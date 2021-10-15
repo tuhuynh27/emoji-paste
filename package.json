@@ -1,0 +1,32 @@
+{
+  "name": "emoji-paste",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "scripts": {
+    "clean": "rm -rf ./dist",
+    "start": "parcel src/index.html",
+    "build-prod": "npm run clean && parcel build src/index.html"
+  },
+  "dependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.15.8",
+    "@babel/preset-env": "^7.15.8",
+    "@babel/preset-react": "^7.14.5",
+    "parcel-bundler": "^1.12.5",
+    "parcel-plugin-static-files-copy": "^2.6.0",
+    "sass": "^1.43.2"
+  },
+  "staticFiles": {
+    "staticPath": ["./public"]
+  },
+  "browserslist": [
+    "last 40 Chrome versions"
+  ]
+}

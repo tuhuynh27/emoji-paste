@@ -1,0 +1,48 @@
+$primary-color: white;
+$bg: black;
+
+* {
+  font-family: "JetBrains Mono", sans-serif;
+}
+
+body {
+  max-width: 960px;
+  margin: auto;
+  padding-bottom: 50px;
+}
+
+h1 {
+  text-align: center;
+}
+
+.search-container {
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+  justify-content: center;
+
+  input {
+    width: 200px;
+  }
+
+  button {
+    margin-left: 5px;
+    width: 200px;
+  }
+
+  margin-bottom: 25px;
+}
+
+.emoji-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  .emoji-item {
+    padding: 5px;
+    cursor: pointer;
+    img {
+      max-width: 50px;
+    }
+  }
+}
