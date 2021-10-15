@@ -15,6 +15,7 @@ class App extends React.Component {
   inputFocus = utilizeFocus()
 
   state = {
+    showSnackbar: false,
     input: '',
     recentlyUse: localStorage.getItem('recentlyUse') ? localStorage.getItem('recentlyUse').split(',') : []
   }
@@ -41,6 +42,12 @@ class App extends React.Component {
       recentlyUse: this.addRecentlyUse(prevState, name)
     }), () => {
       localStorage.setItem('recentlyUse', this.state.recentlyUse.toString())
+    })
+
+    this.setState({
+      showSnackbar: true
+    }, () => {
+      setTimeout(() => this.setState({ showSnackbar: false }), 1000)
     })
   }
 
@@ -69,16 +76,23 @@ class App extends React.Component {
   render() {
     return (
       <>
-        <h1>Emoji Paste <a href='https://github.com/tuhuynh27/emoji-paste' target='_blank' rel='noreferrer'><img alt='Github' src='/icon/github.png' style={{ width: '25px' }}/></a></h1>
+        {this.state.showSnackbar && <div className='snackbar'>
+          Copied to clipboard!
+        </div>}
+        <div className='page-container'>
+          <h1>Emoji Paste <a href='https://github.com/tuhuynh27/emoji-paste' target='_blank' rel='noreferrer'>
+            <img alt='Github' src='/icon/github.png' style={{ width: '25px' }}/></a></h1>
 
-        <div className='search-container'>
-          <input type='search' value={this.state.input} onChange={this.inputChange} ref={this.inputFocus.ref} placeholder='Search emojis' />
-          {this.state.input === 'clear' && <button onClick={this.clearRecentlyUse}>Remove recently use</button>}
+          <div className='search-container'>
+            <input type='search' value={this.state.input} onChange={this.inputChange} ref={this.inputFocus.ref}
+                   placeholder={this.state.recentlyUse.length ? `Type 'clear' to clear recent list` : 'Search emojis'} />
+            {this.state.input === 'clear' && <button onClick={this.clearRecentlyUse}>Remove recently use</button>}
+          </div>
+
+          <Emoji emojis={this.getRecentlyUseEmoji()} />
+
+          <Emoji emojis={this.getEmojis()} handleClickOnEmoji={this.handleClickOnEmoji} />
         </div>
-
-        <Emoji emojis={this.getRecentlyUseEmoji()} />
-
-        <Emoji emojis={this.getEmojis()} handleClickOnEmoji={this.handleClickOnEmoji} />
       </>
     );
   }

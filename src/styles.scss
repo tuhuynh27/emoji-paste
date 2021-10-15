@@ -6,9 +6,22 @@ $bg: black;
 }
 
 body {
+  margin: 0;
+  padding: 0;
+}
+
+.page-container {
   max-width: 960px;
   margin: auto;
   padding-bottom: 50px;
+}
+
+.snackbar {
+  width: 100%;
+  background-color: #000;
+  color: #fff;
+  padding: 10px;
+  text-align: center;
 }
 
 h1 {
@@ -22,7 +35,7 @@ h1 {
   justify-content: center;
 
   input {
-    width: 200px;
+    width: 300px;
   }
 
   button {
