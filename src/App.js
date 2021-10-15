@@ -4,11 +4,13 @@ import Emoji from './Emoji'
 
 import emojis from './data.json'
 
+import { copyImageToClipboardUtil } from './canvas'
+
 const utilizeFocus = () => {
   const ref = React.createRef()
-  const setFocus = () => {ref.current &&  ref.current.focus()}
+  const setFocus = () => { ref.current &&  ref.current.focus() }
 
-  return {setFocus, ref}
+  return { setFocus, ref }
 }
 
 class App extends React.Component {
@@ -60,6 +62,10 @@ class App extends React.Component {
       localStorage.setItem('recentlyUse', this.state.recentlyUse.toString())
     })
 
+    this.showSnackbar()
+  }
+
+  showSnackbar = () => {
     this.setState({
       showSnackbar: true
     }, () => {
@@ -68,13 +74,7 @@ class App extends React.Component {
   }
 
   copyImageToClipBoard = async (url, name) => {
-    if (!url.endsWith('.gif')) {
-      const resp = await fetch('/img/' + url)
-      const blob = await resp.blob()
-      await navigator.clipboard.write([new window.ClipboardItem({ 'image/png': blob })])
-    } else {
-      window.open('/img/' + url)
-    }
+    copyImageToClipboardUtil('/img/' + url)
     this.handleClickOnEmoji(name)
   }
 
@@ -113,6 +113,7 @@ class App extends React.Component {
         {this.state.showSnackbar && <div className='snackbar'>
           Copied to clipboard!
         </div>}
+
         <div className='page-container'>
           <h1>Emoji Paste <a href='https://github.com/tuhuynh27/emoji-paste' target='_blank' rel='noreferrer'>
             <img alt='Github' src='/icon/github.png' style={{ width: '25px' }}/></a></h1>
