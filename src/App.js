@@ -26,6 +26,19 @@ class App extends React.Component {
     })
   }
 
+  handleKeyDown = e => {
+    if (e.key === 'Enter') {
+      if (this.state.input.toLowerCase() === 'clear') {
+        this.clearRecentlyUse()
+      } else {
+        const searchResult = this.getEmojis()
+        if (searchResult.length) {
+          void this.copyImageToClipBoard(searchResult[0].url, searchResult[0].name)
+        }
+      }
+    }
+  }
+
   getEmojis = () => {
     return emojis.filter(e => e.name.includes(this.state.input))
   }
@@ -49,6 +62,17 @@ class App extends React.Component {
     }, () => {
       setTimeout(() => this.setState({ showSnackbar: false }), 1000)
     })
+  }
+
+  copyImageToClipBoard = async (url, name) => {
+    if (!url.endsWith('.gif')) {
+      const resp = await fetch('/img/' + url)
+      const blob = await resp.blob()
+      await navigator.clipboard.write([new window.ClipboardItem({ 'image/png': blob })])
+    } else {
+      window.open('/img/' + url)
+    }
+    this.handleClickOnEmoji(name)
   }
 
   addRecentlyUse = (state, name) => {
@@ -91,14 +115,16 @@ class App extends React.Component {
             <img alt='Github' src='/icon/github.png' style={{ width: '25px' }}/></a></h1>
 
           <div className='search-container'>
-            <input type='search' value={this.state.input} onChange={this.inputChange} ref={this.inputFocus.ref}
+            <input type='search' value={this.state.input}
+                   onChange={this.inputChange} onKeyDown={this.handleKeyDown}
+                   ref={this.inputFocus.ref}
                    placeholder={this.state.recentlyUse.length ? `Type 'clear' to clear recent list` : 'Search emojis'} />
             {this.state.input === 'clear' && <button onClick={this.clearRecentlyUse}>Remove recently use</button>}
           </div>
 
-          <Emoji emojis={this.getRecentlyUseEmoji()} handleClickOnEmoji={this.handleClickOnEmoji} />
+          <Emoji emojis={this.getRecentlyUseEmoji()} copyImageToClipBoard={this.copyImageToClipBoard} handleClickOnEmoji={this.handleClickOnEmoji} />
 
-          <Emoji emojis={this.getEmojis()} handleClickOnEmoji={this.handleClickOnEmoji} />
+          <Emoji emojis={this.getEmojis()} copyImageToClipBoard={this.copyImageToClipBoard} handleClickOnEmoji={this.handleClickOnEmoji} />
         </div>
       </>
     );
