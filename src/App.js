@@ -37,7 +37,10 @@ class App extends React.Component {
         const searchResult = this.getEmojis()
         if (searchResult.length) {
           void this.copyImageToClipBoard(searchResult[0].url, searchResult[0].name)
+        } else {
+          showMessage('No emoji found!')
         }
+
         this.setState({
           input: ''
         })
@@ -63,7 +66,7 @@ class App extends React.Component {
       localStorage.setItem('recentlyUse', this.state.recentlyUse.toString())
     })
 
-    showMessage(`Copied :${name}: to Clipboard`, 2000)
+    showMessage(`Copied :${name}: to Clipboard`)
   }
 
   copyImageToClipBoard = async (url, name) => {
@@ -87,6 +90,7 @@ class App extends React.Component {
       recentlyUse: []
     })
     localStorage.setItem('recentlyUse', '')
+    showMessage('Cleared the recently emoji list!')
   }
 
   componentDidMount() {
