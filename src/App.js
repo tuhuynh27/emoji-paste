@@ -121,7 +121,7 @@ class App extends React.Component {
             <input type='search' value={this.state.input}
                    onChange={this.inputChange} onKeyDown={this.handleKeyDown}
                    ref={this.inputFocus.ref}
-                   placeholder={this.state.recentlyUse.length ? `Type 'clear' to clear recent list` : 'Search emojis'} />
+                   placeholder={this.state.recentlyUse.length ? `Type 'clear' to clear recent list` : 'Type to search and enter to copy'} />
             {this.state.input === 'clear' && <button onClick={this.clearRecentlyUse}>Remove recently use</button>}
           </div>
 
