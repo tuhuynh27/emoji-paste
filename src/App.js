@@ -89,7 +89,7 @@ class App extends React.Component {
             {this.state.input === 'clear' && <button onClick={this.clearRecentlyUse}>Remove recently use</button>}
           </div>
 
-          <Emoji emojis={this.getRecentlyUseEmoji()} />
+          <Emoji emojis={this.getRecentlyUseEmoji()} handleClickOnEmoji={this.handleClickOnEmoji} />
 
           <Emoji emojis={this.getEmojis()} handleClickOnEmoji={this.handleClickOnEmoji} />
         </div>

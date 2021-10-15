@@ -5,7 +5,7 @@ class Emoji extends React.PureComponent {
     if (this.props.handleClickOnEmoji) this.props.handleClickOnEmoji(name)
   }
 
-  openImageNewTab = async (url, name) => {
+  copyImageToClipBoard = async (url, name) => {
     if (!url.endsWith('.gif')) {
       const resp = await fetch('/img/' + url)
       const blob = await resp.blob()
@@ -22,7 +22,7 @@ class Emoji extends React.PureComponent {
         {this.props.emojis.map(i => (
           <div className='emoji-item' key={i.name}>
             <img src={'/img/' + i.url} alt={i.name} title={i.name}
-                 onClick={() => this.openImageNewTab(i.url, i.name)}
+                 onClick={() => this.copyImageToClipBoard(i.url, i.name)}
                  onContextMenu={(e) => this.handleClick(e, i.name)} />
           </div>
         ))}

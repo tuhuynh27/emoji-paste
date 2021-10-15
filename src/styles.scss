@@ -13,10 +13,14 @@ body {
 .page-container {
   max-width: 960px;
   margin: auto;
+  padding-top: 30px;
   padding-bottom: 50px;
 }
 
 .snackbar {
+  position: fixed;
+  overflow: hidden;
+  top: 0;
   width: 100%;
   background-color: #000;
   color: #fff;
@@ -43,7 +47,7 @@ h1 {
     width: 200px;
   }
 
-  margin-bottom: 25px;
+  margin-bottom: 75px;
 }
 
 .emoji-container {
