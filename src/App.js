@@ -69,7 +69,7 @@ class App extends React.Component {
   render() {
     return (
       <>
-        <h1>Emoji Paste</h1>
+        <h1>Emoji Paste <a href='https://github.com/tuhuynh27/emoji-paste' target='_blank' rel='noreferrer'><img alt='Github' src='/icon/github.png' style={{ width: '25px' }}/></a></h1>
 
         <div className='search-container'>
           <input type='search' value={this.state.input} onChange={this.inputChange} ref={this.inputFocus.ref} placeholder='Search emojis' />
