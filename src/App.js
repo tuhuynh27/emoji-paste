@@ -69,8 +69,15 @@ class App extends React.Component {
     localStorage.setItem('recentlyUse', '')
   }
 
-  componentDidMount(){
+  componentDidMount() {
     this.inputFocus.setFocus()
+
+    document.onkeypress =  (e) => {
+      const formElements = ['INPUT', 'TEXTAREA', 'SELECT', 'OPTION'];
+      if (!formElements.includes(e.target.tagName)) {
+        this.inputFocus.setFocus()
+      }
+    }
   }
 
   render() {
