@@ -1,0 +1,16 @@
+{
+  "manifest_version": 2,
+  "name": "Emoji Paste",
+  "description": "WeBuild Emojis",
+  "version": "0.0.1",
+  "browser_action": {
+    "default_icon": "./icon/pepe.png",
+    "default_popup": "./index.html"
+  },
+  "icons": {
+    "16": "./icon/pepe.png",
+    "48": "./icon/pepe.png",
+    "128": "./icon/pepe.png"
+  },
+  "permissions": []
+}

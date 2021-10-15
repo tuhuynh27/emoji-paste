@@ -5,6 +5,11 @@ $bg: black;
   font-family: "JetBrains Mono", sans-serif;
 }
 
+html, body {
+  resize: both;
+  overflow: auto;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -15,17 +20,28 @@ body {
   margin: auto;
   padding-top: 30px;
   padding-bottom: 50px;
+
+  @media only screen and (max-width: 600px) {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
 }
 
 .snackbar {
   position: fixed;
   overflow: hidden;
   top: 0;
+  bottom: unset;
   width: 100%;
   background-color: #000;
   color: #fff;
   padding: 10px;
   text-align: center;
+
+  @media only screen and (max-width: 600px) {
+    top: unset;
+    bottom: 0;
+  }
 }
 
 h1 {
@@ -48,6 +64,14 @@ h1 {
   }
 
   margin-bottom: 75px;
+
+  @media only screen and (max-width: 600px) {
+    margin-bottom: 30px;
+
+    input {
+      margin: 0 40px;
+    }
+  }
 }
 
 .emoji-container {
