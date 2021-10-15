@@ -1,3 +1,5 @@
+import { showMessage } from './snackbar'
+
 function setCanvasImage(path, func) {
   const img = new Image
   const c = document.createElement('canvas')
@@ -22,6 +24,6 @@ export function copyImageToClipboardUtil(url) {
       ]
     )
       .then(() => { })
-      .catch(e =>{ console.log(e) })
+      .catch(e =>{ showMessage(e) })
   })
 }

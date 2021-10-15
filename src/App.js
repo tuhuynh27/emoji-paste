@@ -6,6 +6,8 @@ import emojis from './data.json'
 
 import { copyImageToClipboardUtil } from './canvas'
 
+import { showMessage } from './snackbar'
+
 const utilizeFocus = () => {
   const ref = React.createRef()
   const setFocus = () => { ref.current &&  ref.current.focus() }
@@ -17,7 +19,6 @@ class App extends React.Component {
   inputFocus = utilizeFocus()
 
   state = {
-    showSnackbar: false,
     input: '',
     recentlyUse: localStorage.getItem('recentlyUse') ? localStorage.getItem('recentlyUse').split(',') : []
   }
@@ -62,15 +63,7 @@ class App extends React.Component {
       localStorage.setItem('recentlyUse', this.state.recentlyUse.toString())
     })
 
-    this.showSnackbar()
-  }
-
-  showSnackbar = () => {
-    this.setState({
-      showSnackbar: true
-    }, () => {
-      setTimeout(() => this.setState({ showSnackbar: false }), 1000)
-    })
+    showMessage(`Copied :${name}: to Clipboard`, 2000)
   }
 
   copyImageToClipBoard = async (url, name) => {
@@ -110,10 +103,6 @@ class App extends React.Component {
   render() {
     return (
       <>
-        {this.state.showSnackbar && <div className='snackbar'>
-          Copied to clipboard!
-        </div>}
-
         <div className='page-container'>
           <h1>Emoji Paste <a href='https://github.com/tuhuynh27/emoji-paste' target='_blank' rel='noreferrer'>
             <img alt='Github' src='/icon/github.png' style={{ width: '25px' }}/></a></h1>
