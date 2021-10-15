@@ -35,6 +35,9 @@ class App extends React.Component {
         if (searchResult.length) {
           void this.copyImageToClipBoard(searchResult[0].url, searchResult[0].name)
         }
+        this.setState({
+          input: ''
+        })
       }
     }
   }
