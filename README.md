@@ -7,3 +7,5 @@ Visit site: [emoji.keva.dev](https://emoji.keva.dev)
 - Keyboard-only mode
 - Recent used emojis
 - Update emoji list (in coming)
+
+**For Firefox:** Visit `about:config` and set `dom.events.asyncClipboard.clipboardItem` to `true` to enable `ClipboardItem`.
